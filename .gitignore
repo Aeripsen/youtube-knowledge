@@ -1,0 +1,18 @@
+# secrets
+.env
+*.key
+*.pem
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# pipeline outputs (kept local; structure preserved via .gitkeep)
+data/raw/*
+data/normalized/*
+data/insights/*
+!data/raw/.gitkeep
+!data/normalized/.gitkeep
+!data/insights/.gitkeep

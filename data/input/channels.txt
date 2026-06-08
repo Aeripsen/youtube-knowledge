@@ -1,0 +1,10 @@
+# YouTube channels (one per line). Ingest will list recent uploads per channel.
+# Start small — channels can expand into many videos.
+
+https://www.youtube.com/@PracticalNetworking   # Wireshark / networking fundamentals
+https://www.youtube.com/@ChrisGreer             # Wireshark packet analysis
+https://www.youtube.com/user/NordicSemi         # BLE dev, Nordic sniffer
+https://www.youtube.com/c/NovelBits             # BLE concepts (GAP/GATT/ATT)
+https://www.youtube.com/@ViralSilabs            # Silicon Labs: Z-Wave / low-power wireless
+https://www.youtube.com/user/texasinstruments   # TI: SmartRF sniffer, 802.15.4/Zigbee/BLE
+https://www.youtube.com/@nateherk                # n8n / AI agents (consider pulling recent uploads)

@@ -1,0 +1,62 @@
+# Verified direct YouTube video URLs (one per line; #-lines and blanks ignored).
+# Extracted from _source_links.md. Placeholder/unverified IDs were excluded
+# (see resources.md for those + search-queries.txt to find real ones).
+# Security/IoT entries below are for authorized lab / your own devices only.
+
+# --- AI agents, coding, MCP, automation, RAG ---
+https://www.youtube.com/watch?v=NAWcnIebQ-o   # I Ranked Every AI Coding Assistant
+https://www.youtube.com/watch?v=LOjwfOf39mg   # OpenCode vs Claude Code: Cost vs Quality
+https://www.youtube.com/watch?v=vfbmNhnzmfw   # Qwen 3 Coder NEXT + Qwen Code CLI
+https://www.youtube.com/watch?v=kOhLoixrJXo   # MCP In 26 Minutes
+https://www.youtube.com/watch?v=kAVRFYgCPg0   # MCP Creator Reveals 2026 Roadmap
+https://www.youtube.com/watch?v=vDVSGVpB2vc   # Build Claude Agent Teams Better Than 99%
+https://www.youtube.com/watch?v=t2rm66G8NRc   # Automated Job Search with n8n
+https://www.youtube.com/watch?v=EeMy1Qv9rPY   # Docling (IBM): documents AI-ready
+
+# --- Wireshark / packet analysis fundamentals ---
+https://www.youtube.com/watch?v=OU-A2EmVrKQ   # Learn Wireshark (Chris Greer)
+https://www.youtube.com/watch?v=qTaOZrDnMzQ   # Wireshark for Beginners (Anson Alexander)
+https://www.youtube.com/watch?v=t5OJephyw8I   # Analyzing TCP Resets (Chris Greer)
+
+# --- BLE / Bluetooth ---
+https://www.youtube.com/watch?v=JSQhRyTKnW4   # Master BLE Basics in 10 min (Novel Bits)
+https://www.youtube.com/watch?v=u4HY3OIk2-c   # BLE Fundamentals: GAP/GATT/ATT (Bina Bhatt)
+https://www.youtube.com/watch?v=Z3HH6pOZjlA   # Android Bluetooth HCI snoop logs (Dimple S)
+https://www.youtube.com/watch?v=ptY3lrboV-c   # nRF52840 Dongle for BLE Sniffing
+https://www.youtube.com/watch?v=HeG3ARRm05I   # Sniff Bluetooth w/ nRF52840 (drselim)
+https://www.youtube.com/watch?v=gvxqg0vxhrQ   # DIY BLE Sniffing (Elektor TV)
+
+# --- USB ---
+https://www.youtube.com/watch?v=DXhZsS26To8   # USB Sniffing Explained (Wireshark)
+
+# --- Zigbee / 802.15.4 ---
+https://www.youtube.com/watch?v=8e4oaUHlMsE   # Zigbee Hub w/ SMLIGHT SLZB-06 (Technically Tim)
+https://www.youtube.com/watch?v=4odgkRfvQ4s   # Sniffing 802.15.4 (Thread/Zigbee) w/ Wireshark
+https://www.youtube.com/watch?v=UmpDXc3cXbU   # ZigBee Explained (Everything Smart Home)
+https://www.youtube.com/watch?v=lVr88JS-2rM   # ZigBee Protocol Stack (Engineering Funda)
+https://www.youtube.com/watch?v=g0ER7aK81lU   # Zigbee Wireless Sniffer (ICP DAS)
+https://www.youtube.com/watch?v=Vetv4V6VMy0   # SONOFF Dongle Flasher
+https://www.youtube.com/watch?v=-o_jG7Ll1PE   # Sonoff ZBDongle-P Firmware Update
+https://www.youtube.com/watch?v=7eKv8wZBQ1o   # Build Your Own Zigbee Devices
+https://www.youtube.com/watch?v=kpwPfxE0338   # Build a Zigbee Sniffer (Silicon Labs MG12)
+https://www.youtube.com/watch?v=eAaMv7jrr0I   # CatSniffer Distributed Zigbee (Electronic Cats)
+
+# --- Z-Wave ---
+https://www.youtube.com/watch?v=J8Mp5_Q4DPw   # Set up Z-Wave Stick (kian)
+https://www.youtube.com/watch?v=Mvid3GNob8Q   # Z-Wave setup in Home Assistant (Michael Sleen)
+
+# --- Wi-Fi capture / monitor mode ---
+https://www.youtube.com/watch?v=hEXwOkyYNL0   # Kali Alfa adapter fix
+https://www.youtube.com/watch?v=5MOsY3VNLK8   # WiFi adapters hardware context
+https://www.youtube.com/watch?v=zdCGMIZbRr8   # Enable Monitor Mode on Kali
+https://www.youtube.com/watch?v=YwuS16hihfI   # Managed vs Monitor mode (CLI)
+https://www.youtube.com/watch?v=-xkpgvjuEy0   # TP-Link adapter driver fix
+
+# --- IoT traffic analysis / testbed ---
+https://www.youtube.com/watch?v=oMfDWzURUx0   # IoT devices traffic analysis (SharkFest)
+https://www.youtube.com/watch?v=6qkWn_sy0Ec   # Carleton-Cisco IoT Testbed
+https://www.youtube.com/watch?v=lb1ZQjqDEzc   # Wireshark IoT device traffic (David Bombal)
+
+# --- Nate Herk (n8n / AI agents) ---
+https://www.youtube.com/watch?v=ZeJXI2MAhj0   # Nate Herk
+https://www.youtube.com/watch?v=S_oN3vlzpMw   # Nate Herk

@@ -1,0 +1,16 @@
+# Topics to resolve into the BEST + NEWEST videos (the source had these as bare
+# YouTube search URLs, not specific videos). The "find best videos" step will
+# search each, pick top current results, and append them to videos.txt for review.
+
+VS Code + Kilo + GLM Coding Plan + Claude Code 2.0
+Qwen Code CLI + Qwen-3 Coder vs Claude Code
+OpenCode free AI coding agent setup guide 2026
+n8n automation tutorial 2026
+Apify guide 2026 basics n8n MCPs
+Advanced RAG ingesting high complexity PDF files
+GraphRAG building a smarter AI system
+Build AI teams with MCP and sub-agents
+Agent2Agent (A2A) crash course 2026
+Build AI agents with LangChain + LangGraph
+Agentspan build crash-proof AI pipelines
+Arize AI Phoenix open-source tracing & evaluation

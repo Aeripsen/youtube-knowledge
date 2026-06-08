@@ -1,0 +1,44 @@
+# Non-secret configuration. Secrets live in .env, never here.
+# Anything that might change without a code edit belongs in this file.
+
+paths:
+  input_dir: data/input
+  raw_dir: data/raw
+  normalized_dir: data/normalized
+  insights_dir: data/insights
+
+ingest:
+  # Transcript source priority. The pipeline tries these in order.
+  transcript_priority:
+    - manual_subs        # yt-dlp human-written captions
+    - auto_subs          # yt-dlp auto-generated captions
+    - transcript_api     # youtube-transcript-api fallback
+  subtitle_languages:    # preferred languages, first match wins
+    - en
+    - en-US
+  # Be polite to YouTube from a residential IP. Dozens-scale = gentle is fine.
+  request_delay_seconds: 2
+  max_retries: 3
+  # Set true only if you hit "Sign in to confirm you're not a bot".
+  use_browser_cookies: false
+  cookies_from_browser: chrome
+  skip_already_fetched: true   # idempotent / resumable
+
+comments:
+  enabled: false         # deferred by decision; flip on later
+  max_top_level: 100
+  include_replies: false
+
+extract:
+  # Pluggable provider interface. Start with claude_code (your subscription).
+  # Later you can add anthropic_api / openai_api and cross-check models.
+  provider: claude_code
+  require_citations: true       # every insight must carry video_id + timestamp
+  fields:                       # what to pull from each transcript
+    - summary
+    - key_points
+    - tools_mentioned
+    - people_mentioned
+    - books_papers_mentioned
+    - links_resources
+    - action_items
