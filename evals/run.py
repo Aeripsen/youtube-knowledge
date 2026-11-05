@@ -121,10 +121,12 @@ def dumps(result: dict) -> str:
     return json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
 
 
-def stub_result() -> dict:
-    return run(StubAnswerer(), provider_config={
-        "stub_min_score": STUB_MIN_SCORE, "stub_min_coverage": STUB_MIN_COVERAGE,
-        "stub_candidate_chunks": STUB_CANDIDATE_CHUNKS})
+STUB_CONFIG = {"stub_min_score": STUB_MIN_SCORE, "stub_min_coverage": STUB_MIN_COVERAGE,
+               "stub_candidate_chunks": STUB_CANDIDATE_CHUNKS}
+
+
+def stub_result(judge=None) -> dict:
+    return run(StubAnswerer(), judge, provider_config=STUB_CONFIG)
 
 
 def summary(result: dict) -> str:
@@ -160,10 +162,8 @@ def main(argv=None) -> int:
         return 2
 
     judge = LLMJudge(args.model, key) if args.llm_judge else None
-    if args.provider == "stub" and judge is None:
-        result = stub_result()
-    elif args.provider == "stub":
-        result = run(StubAnswerer(), judge)
+    if args.provider == "stub":
+        result = stub_result(judge)
     else:
         result = run(AnthropicAnswerer(args.model, key), judge, provider_config={"model": args.model})
 
