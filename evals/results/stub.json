@@ -1,0 +1,1424 @@
+{
+  "config": {
+    "chunk_seconds": 10.0,
+    "k_values": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "llm_judge": false,
+    "max_citation_seconds": 60.0,
+    "min_overlap_fraction": 0.5,
+    "min_support_ratio": 0.8,
+    "n_chunks": 48,
+    "n_transcripts": 4,
+    "provider": "stub",
+    "retriever": "bm25",
+    "stub_candidate_chunks": 3,
+    "stub_min_coverage": 0.3,
+    "stub_min_score": 4.0
+  },
+  "metrics": {
+    "all": {
+      "answers": {
+        "citation_validity": 0.7632,
+        "contains_reference_key_terms": 0.7895,
+        "faithfulness_to_cited_span_deterministic": 1.0,
+        "supported_by_gold_span_deterministic": 0.7895
+      },
+      "n_answerable": 40,
+      "n_answered": 38,
+      "n_unanswerable": 10,
+      "refusal": {
+        "false_refusal_rate_answerable": 0.05,
+        "refusal_accuracy_unanswerable": 0.3
+      },
+      "retrieval": {
+        "mrr@10": 0.8263,
+        "recall@1": 0.725,
+        "recall@10": 1.0,
+        "recall@3": 0.9,
+        "recall@5": 0.95
+      }
+    },
+    "dev": {
+      "answers": {
+        "citation_validity": 0.8261,
+        "contains_reference_key_terms": 0.8261,
+        "faithfulness_to_cited_span_deterministic": 1.0,
+        "supported_by_gold_span_deterministic": 0.8261
+      },
+      "n_answerable": 24,
+      "n_answered": 23,
+      "n_unanswerable": 5,
+      "refusal": {
+        "false_refusal_rate_answerable": 0.0417,
+        "refusal_accuracy_unanswerable": 0.6
+      },
+      "retrieval": {
+        "mrr@10": 0.8445,
+        "recall@1": 0.75,
+        "recall@10": 1.0,
+        "recall@3": 0.9167,
+        "recall@5": 0.9167
+      }
+    },
+    "heldout": {
+      "answers": {
+        "citation_validity": 0.6667,
+        "contains_reference_key_terms": 0.7333,
+        "faithfulness_to_cited_span_deterministic": 1.0,
+        "supported_by_gold_span_deterministic": 0.7333
+      },
+      "n_answerable": 16,
+      "n_answered": 15,
+      "n_unanswerable": 5,
+      "refusal": {
+        "false_refusal_rate_answerable": 0.0625,
+        "refusal_accuracy_unanswerable": 0.0
+      },
+      "retrieval": {
+        "mrr@10": 0.799,
+        "recall@1": 0.6875,
+        "recall@10": 1.0,
+        "recall@3": 0.875,
+        "recall@5": 1.0
+      }
+    }
+  },
+  "questions": [
+    {
+      "answer": "The first thing I do is apply the display filter tcp.flags.reset == 1.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 25.715,
+        "start": 20.715,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 25.715,
+        "start": 20.715
+      },
+      "has_key_terms": true,
+      "id": "a01",
+      "question": "Which display filter does the speaker apply to see only reset packets?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 25.715,
+        "score": 17.1693,
+        "start": 14.746,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "That shows only the reset packets, so in this capture we go from forty thousand frames down to twelve.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 33.223,
+        "start": 25.915,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 33.223,
+        "start": 25.915
+      },
+      "has_key_terms": true,
+      "id": "a02",
+      "question": "After filtering, how many frames were left out of the original capture?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 40.346,
+        "score": 6.301366,
+        "start": 25.915,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "If the server normally arrives with a TTL of fifty-two and the reset arrives with sixty-four, something in the middle probably injected it.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 49.392,
+        "start": 40.546,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 49.392,
+        "start": 40.546
+      },
+      "has_key_terms": true,
+      "id": "a03",
+      "question": "What TTL values suggested that a device in the middle injected the reset?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 56.13,
+        "score": 13.327013,
+        "start": 40.546,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "In this case the culprit was a firewall with an idle timeout of three hundred and sixty seconds.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 63.253,
+        "start": 56.33,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 63.253,
+        "start": 56.33
+      },
+      "has_key_terms": true,
+      "id": "a04",
+      "question": "How long was the firewall idle timeout in the example?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 70.376,
+        "score": 10.010153,
+        "start": 56.33,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "In this case the culprit was a firewall with an idle timeout of three hundred and sixty seconds.",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 63.253,
+        "start": 56.33,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 82.314,
+        "start": 77.314
+      },
+      "has_key_terms": false,
+      "id": "a05",
+      "question": "What change fixed the idle timeout resets?",
+      "rank": 8,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 70.376,
+        "score": 6.308312,
+        "start": 56.33,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "Another common pattern is a reset right after the SYN, which simply means nothing is listening on that port.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 89.822,
+        "start": 82.514,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 89.822,
+        "start": 82.514
+      },
+      "has_key_terms": true,
+      "id": "a06",
+      "question": "What does a reset straight after a SYN normally mean?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 96.945,
+        "score": 10.883574,
+        "start": 82.514,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "",
+      "answerable": true,
+      "cite": null,
+      "gold_span": {
+        "end": 116.775,
+        "start": 103.499
+      },
+      "id": "a07",
+      "question": "Why would Linux answer with RST rather than FIN when an app closes its socket?",
+      "rank": 2,
+      "refused": true,
+      "split": "dev",
+      "top_hit": {
+        "end": 123.513,
+        "score": 7.394831,
+        "start": 110.237,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "I also add a column for the TCP stream index so I can jump between conversations quickly.",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 130.251,
+        "start": 123.713,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 134.682,
+        "start": 130.451
+      },
+      "has_key_terms": false,
+      "id": "a08",
+      "question": "How does the speaker turn the stream index into a column?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 134.682,
+        "score": 17.072369,
+        "start": 123.713,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "Finally, open Statistics, then Conversations, and sort by the number of packets to find the busiest flows.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 141.42,
+        "start": 134.882,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 141.42,
+        "start": 134.882
+      },
+      "has_key_terms": true,
+      "id": "a09",
+      "question": "Where in Wireshark does the speaker go to find the busiest flows?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 148.158,
+        "score": 11.164293,
+        "start": 134.882,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "If they are spread across every flow at the same timestamp, suspect a shared device, for example a firewall reboot.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 156.05,
+        "start": 148.358,
+        "video_id": "g_tcp_resets"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 156.05,
+        "start": 148.358
+      },
+      "has_key_terms": true,
+      "id": "a10",
+      "question": "If resets hit every flow at the same instant, what should you suspect?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 162.019,
+        "score": 12.056368,
+        "start": 148.358,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "GATT stands for Generic Attribute Profile, and it sits on top of the Attribute Protocol, called ATT.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 13.392,
+        "start": 6.854,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 13.392,
+        "start": 6.854
+      },
+      "has_key_terms": true,
+      "id": "a11",
+      "question": "Which lower protocol layer does GATT run on?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 13.392,
+        "score": 6.290785,
+        "start": 0.5,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "A peripheral advertises on three channels: thirty-seven, thirty-eight, and thirty-nine.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 23.792,
+        "start": 19.946,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 23.792,
+        "start": 19.946
+      },
+      "has_key_terms": true,
+      "id": "a12",
+      "question": "On which channels does a BLE peripheral advertise?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 23.792,
+        "score": 8.735319,
+        "start": 13.592,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "For example, the standard heart rate service has the sixteen bit UUID 0x180D.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 48.053,
+        "start": 43.053,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 48.053,
+        "start": 43.053
+      },
+      "has_key_terms": true,
+      "id": "a13",
+      "question": "What is the short UUID of the standard heart rate service?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 48.053,
+        "score": 18.715857,
+        "start": 37.853,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "Indicate does the same thing but the client must confirm each value, so it is slower and more reliable.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 73.084,
+        "start": 65.776,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 73.084,
+        "start": 59.038
+      },
+      "has_key_terms": true,
+      "id": "a14",
+      "question": "How does indicate differ from notify?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 73.084,
+        "score": 9.201722,
+        "start": 59.038,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "To turn notifications on, the client writes the value one to the Client Characteristic Configuration Descriptor, often shortened to CCCD.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 80.976,
+        "start": 73.284,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 80.976,
+        "start": 73.284
+      },
+      "has_key_terms": true,
+      "id": "a15",
+      "question": "What does the client write to the CCCD to switch on notifications?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 89.453,
+        "score": 13.36409,
+        "start": 73.284,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "The default ATT MTU is twenty-three bytes, which leaves twenty bytes of payload per notification.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 95.422,
+        "start": 89.653,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 95.422,
+        "start": 89.653
+      },
+      "has_key_terms": true,
+      "id": "a16",
+      "question": "What is the default ATT MTU?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 101.776,
+        "score": 10.313777,
+        "start": 89.653,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "Most modern phones negotiate a larger MTU right after connecting, often two hundred and forty-seven bytes.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 101.776,
+        "start": 95.622,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 101.776,
+        "start": 95.622
+      },
+      "has_key_terms": true,
+      "id": "a17",
+      "question": "What larger MTU do phones often negotiate after connecting?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 101.776,
+        "score": 18.022623,
+        "start": 89.653,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "If you need more throughput, also request the two megabit PHY, which Bluetooth 5 introduced.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 107.745,
+        "start": 101.976,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 107.745,
+        "start": 101.976
+      },
+      "has_key_terms": true,
+      "id": "a18",
+      "question": "Which Bluetooth version brought the 2M PHY?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 113.33,
+        "score": 7.2603,
+        "start": 101.976,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "iOS will not let you go below fifteen milliseconds for the connection interval in most cases.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 119.684,
+        "start": 113.53,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 119.684,
+        "start": 113.53
+      },
+      "has_key_terms": true,
+      "id": "a19",
+      "question": "What is the lowest connection interval iOS usually accepts?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 125.653,
+        "score": 9.889746,
+        "start": 113.53,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "",
+      "answerable": true,
+      "cite": null,
+      "gold_span": {
+        "end": 144.715,
+        "start": 133.361
+      },
+      "id": "a20",
+      "question": "Why must the over-the-air capture begin before the devices connect?",
+      "rank": 4,
+      "refused": true,
+      "split": "heldout",
+      "top_hit": {
+        "end": 151.069,
+        "score": 6.25965,
+        "start": 141.253,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "my coordinator is on channel fifteen so the sniffer has to be on channel fifteen too the sniffer only hears one channel at a time it does not hop",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 24.387,
+        "start": 19.387,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 13.213,
+        "start": 9.751
+      },
+      "has_key_terms": false,
+      "id": "a21",
+      "question": "Which channel numbers does Zigbee use?",
+      "rank": 2,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 24.387,
+        "score": 6.170285,
+        "start": 13.213,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "there are sixteen channels numbered eleven through twenty six my coordinator is on channel fifteen so the sniffer has to be on channel fifteen too",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 19.377,
+        "start": 13.223,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 19.377,
+        "start": 13.223
+      },
+      "has_key_terms": true,
+      "id": "a22",
+      "question": "What channel is the speaker's coordinator on?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 24.387,
+        "score": 9.427716,
+        "start": 13.213,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "The sniffer has to follow the connection from the very first connection request, otherwise it cannot track the channel hopping.",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 141.053,
+        "start": 133.361,
+        "video_id": "g_ble_gatt"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 24.387,
+        "start": 19.387
+      },
+      "has_key_terms": false,
+      "id": "a23",
+      "question": "Can the sniffer listen on several channels by hopping?",
+      "rank": 2,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 141.053,
+        "score": 10.116936,
+        "start": 125.853,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "the sniffer only hears one channel at a time it does not hop for hardware i'm using a ti cc2531 usb stick flashed with the sniffer firmware",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 29.782,
+        "start": 24.397,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 29.782,
+        "start": 24.397
+      },
+      "has_key_terms": true,
+      "id": "a24",
+      "question": "What hardware does the speaker use as the Zigbee sniffer?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 35.946,
+        "score": 11.682666,
+        "start": 24.387,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "you can also use a silicon labs board or a nordic nrf52840 if you have one on the pc side whsniff pipes the packets straight into wireshark",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 40.187,
+        "start": 35.956,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 40.187,
+        "start": 35.956
+      },
+      "has_key_terms": true,
+      "id": "a25",
+      "question": "What program sends the captured packets into Wireshark?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 50.207,
+        "score": 5.830518,
+        "start": 35.946,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "so you put that key into wireshark under the zigbee protocol preferences and if you capture the join wireshark decrypts the transport key and shows you the network key",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 74.487,
+        "start": 67.949,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 50.207,
+        "start": 44.438
+      },
+      "has_key_terms": false,
+      "id": "a26",
+      "question": "What cipher protects the Zigbee network key traffic?",
+      "rank": 5,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 74.487,
+        "score": 9.403844,
+        "start": 60.612,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "home automation devices get the network key encrypted with the well known trust center link key that default key spells zigbeealliance09 in ascii",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 63.314,
+        "start": 60.622,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 63.314,
+        "start": 60.622
+      },
+      "has_key_terms": true,
+      "id": "a27",
+      "question": "What text does the default trust center link key spell?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 74.487,
+        "score": 18.889356,
+        "start": 60.612,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "that default key spells zigbeealliance09 in ascii so you put that key into wireshark under the zigbee protocol preferences",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 67.939,
+        "start": 63.324,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 67.939,
+        "start": 63.324
+      },
+      "has_key_terms": true,
+      "id": "a28",
+      "question": "Where in Wireshark are the decryption keys entered?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 74.487,
+        "score": 7.687227,
+        "start": 60.612,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "zigbee uses a network key with aes 128 and without it you only see headers the trick is to capture the moment a new device joins",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 54.448,
+        "start": 50.217,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 95.297,
+        "start": 86.056
+      },
+      "has_key_terms": false,
+      "id": "a29",
+      "question": "Which feature stops the join capture trick from working?",
+      "rank": 2,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 60.612,
+        "score": 10.333973,
+        "start": 50.207,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "i also watch the link status messages that routers send every fifteen seconds",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 114.193,
+        "start": 114.183,
+        "video_id": "g_zigbee_sniff"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 114.183,
+        "start": 109.183
+      },
+      "has_key_terms": true,
+      "id": "a30",
+      "question": "How often do routers send link status messages?",
+      "rank": 2,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 124.587,
+        "score": 15.240891,
+        "start": 114.183,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "There are three roles: the host application, the client inside it, and the server that exposes capabilities.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 14.93,
+        "start": 8.392,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 14.93,
+        "start": 8.392
+      },
+      "has_key_terms": true,
+      "id": "a31",
+      "question": "What are the three roles in MCP?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 14.93,
+        "score": 9.529907,
+        "start": 0.5,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "One client talks to exactly one server, but a host can run many clients at once.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 21.284,
+        "start": 15.13,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 21.284,
+        "start": 15.13
+      },
+      "has_key_terms": true,
+      "id": "a32",
+      "question": "How many servers does one MCP client connect to?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 25.715,
+        "score": 10.676745,
+        "start": 15.13,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "For testing, the MCP Inspector lets you call tools by hand and see the raw messages.",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 128.16,
+        "start": 122.006,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 38.423,
+        "start": 25.915
+      },
+      "has_key_terms": false,
+      "id": "a33",
+      "question": "What separates an MCP tool from a resource?",
+      "rank": 3,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 128.16,
+        "score": 6.358275,
+        "start": 116.421,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "For testing, the MCP Inspector lets you call tools by hand and see the raw messages.",
+      "answerable": true,
+      "citation_valid": false,
+      "cite": {
+        "end": 128.16,
+        "start": 122.006,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 45.746,
+        "start": 44.208
+      },
+      "has_key_terms": false,
+      "id": "a34",
+      "question": "What message format does MCP use?",
+      "rank": 7,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": false,
+      "top_hit": {
+        "end": 128.16,
+        "score": 6.135333,
+        "start": 116.421,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "For transport, local servers usually use standard input and output, so the host just launches a subprocess.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 52.484,
+        "start": 45.946,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 52.484,
+        "start": 45.946
+      },
+      "has_key_terms": true,
+      "id": "a35",
+      "question": "How do local MCP servers usually communicate with the host?",
+      "rank": 2,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 14.93,
+        "score": 7.601505,
+        "start": 0.5,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "Remote servers use streamable HTTP, which replaced the older server-sent events transport.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 57.299,
+        "start": 52.684,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 57.299,
+        "start": 52.684
+      },
+      "has_key_terms": true,
+      "id": "a36",
+      "question": "Which older transport was replaced by streamable HTTP?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 63.653,
+        "score": 17.706981,
+        "start": 52.684,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "After that, the client calls tools/list to discover what the server offers.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 68.468,
+        "start": 63.853,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 68.468,
+        "start": 63.853
+      },
+      "has_key_terms": true,
+      "id": "a37",
+      "question": "Which method does a client call to find out what tools a server has?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 74.437,
+        "score": 9.299171,
+        "start": 63.853,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "Returning an error result instead of throwing lets the model see the message and try again.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 105.436,
+        "start": 99.282,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 105.436,
+        "start": 99.282
+      },
+      "has_key_terms": true,
+      "id": "a38",
+      "question": "Why return an error result instead of throwing?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 116.221,
+        "score": 11.844727,
+        "start": 99.282,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "For remote servers, authorization is based on OAuth 2.1.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 109.098,
+        "start": 105.636,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 109.098,
+        "start": 105.636
+      },
+      "has_key_terms": true,
+      "id": "a39",
+      "question": "What standard is remote server authorization built on?",
+      "rank": 1,
+      "refused": false,
+      "split": "dev",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 116.221,
+        "score": 7.466776,
+        "start": 99.282,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "For testing, the MCP Inspector lets you call tools by hand and see the raw messages.",
+      "answerable": true,
+      "citation_valid": true,
+      "cite": {
+        "end": 128.16,
+        "start": 122.006,
+        "video_id": "g_mcp_basics"
+      },
+      "faithful_to_cited": true,
+      "gold_span": {
+        "end": 128.16,
+        "start": 122.006
+      },
+      "has_key_terms": true,
+      "id": "a40",
+      "question": "Which utility lets you invoke MCP tools manually while testing?",
+      "rank": 1,
+      "refused": false,
+      "split": "heldout",
+      "supported_by_gold": true,
+      "top_hit": {
+        "end": 128.16,
+        "score": 13.339163,
+        "start": 116.421,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "",
+      "answerable": false,
+      "cite": null,
+      "id": "u01",
+      "question": "Which Wireshark release does the speaker use in the demo?",
+      "refused": true,
+      "split": "dev",
+      "top_hit": {
+        "end": 74.487,
+        "score": 3.349985,
+        "start": 60.612,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "In this case the culprit was a firewall with an idle timeout of three hundred and sixty seconds.",
+      "answerable": false,
+      "cite": {
+        "end": 63.253,
+        "start": 56.33,
+        "video_id": "g_tcp_resets"
+      },
+      "id": "u02",
+      "question": "Which firewall vendor caused the idle timeout resets?",
+      "refused": false,
+      "split": "heldout",
+      "top_hit": {
+        "end": 70.376,
+        "score": 10.010153,
+        "start": 56.33,
+        "video_id": "g_tcp_resets"
+      },
+      "video_id": "g_tcp_resets"
+    },
+    {
+      "answer": "",
+      "answerable": false,
+      "cite": null,
+      "id": "u03",
+      "question": "What maximum range does the speaker quote for a BLE connection?",
+      "refused": true,
+      "split": "dev",
+      "top_hit": {
+        "end": 141.053,
+        "score": 3.092917,
+        "start": 125.853,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "For example, the standard heart rate service has the sixteen bit UUID 0x180D.",
+      "answerable": false,
+      "cite": {
+        "end": 48.053,
+        "start": 43.053,
+        "video_id": "g_ble_gatt"
+      },
+      "id": "u04",
+      "question": "What is the UUID of the battery service?",
+      "refused": false,
+      "split": "heldout",
+      "top_hit": {
+        "end": 48.053,
+        "score": 8.507202,
+        "start": 37.853,
+        "video_id": "g_ble_gatt"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "",
+      "answerable": false,
+      "cite": null,
+      "id": "u05",
+      "question": "How many milliamps does the peripheral draw while advertising?",
+      "refused": true,
+      "split": "dev",
+      "top_hit": {
+        "end": 25.715,
+        "score": 4.065027,
+        "start": 15.13,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_ble_gatt"
+    },
+    {
+      "answer": "zigbee uses a network key with aes 128 and without it you only see headers the trick is to capture the moment a new device joins",
+      "answerable": false,
+      "cite": {
+        "end": 54.448,
+        "start": 50.217,
+        "video_id": "g_zigbee_sniff"
+      },
+      "id": "u06",
+      "question": "How many devices are on the speaker's Zigbee network?",
+      "refused": false,
+      "split": "heldout",
+      "top_hit": {
+        "end": 60.612,
+        "score": 7.945982,
+        "start": 50.207,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "the sniffer only hears one channel at a time it does not hop for hardware i'm using a ti cc2531 usb stick flashed with the sniffer firmware",
+      "answerable": false,
+      "cite": {
+        "end": 29.782,
+        "start": 24.397,
+        "video_id": "g_zigbee_sniff"
+      },
+      "id": "u07",
+      "question": "Which firmware version was flashed onto the sniffer stick?",
+      "refused": false,
+      "split": "dev",
+      "top_hit": {
+        "end": 35.946,
+        "score": 18.469148,
+        "start": 24.387,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "once decrypted you can see zcl commands like on off and level control a light bulb turning on is a zcl on command to cluster six",
+      "answerable": false,
+      "cite": {
+        "end": 105.317,
+        "start": 100.317,
+        "video_id": "g_zigbee_sniff"
+      },
+      "id": "u08",
+      "question": "What brand of light bulb was used in the demo?",
+      "refused": false,
+      "split": "heldout",
+      "top_hit": {
+        "end": 114.183,
+        "score": 8.825881,
+        "start": 100.307,
+        "video_id": "g_zigbee_sniff"
+      },
+      "video_id": "g_zigbee_sniff"
+    },
+    {
+      "answer": "The Model Context Protocol, or MCP, is a standard way to connect a language model application to tools and data.",
+      "answerable": false,
+      "cite": {
+        "end": 8.192,
+        "start": 0.5,
+        "video_id": "g_mcp_basics"
+      },
+      "id": "u09",
+      "question": "Which company created the Model Context Protocol?",
+      "refused": false,
+      "split": "dev",
+      "top_hit": {
+        "end": 14.93,
+        "score": 9.416677,
+        "start": 0.5,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    },
+    {
+      "answer": "When the model wants to act, the client sends tools/call with the arguments.",
+      "answerable": false,
+      "cite": {
+        "end": 93.113,
+        "start": 88.113,
+        "video_id": "g_mcp_basics"
+      },
+      "id": "u10",
+      "question": "What is the maximum size of a tool call result?",
+      "refused": false,
+      "split": "heldout",
+      "top_hit": {
+        "end": 99.082,
+        "score": 8.455631,
+        "start": 88.113,
+        "video_id": "g_mcp_basics"
+      },
+      "video_id": "g_mcp_basics"
+    }
+  ]
+}
