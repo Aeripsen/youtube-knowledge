@@ -1,0 +1,103 @@
+WEBVTT
+Kind: captions
+Language: en
+
+1
+00:00:00.500 --> 00:00:08.192
+The Model Context Protocol, or MCP, is a standard way to connect a language model application to tools and data.
+
+2
+00:00:08.392 --> 00:00:14.930
+There are three roles: the host application, the client inside it, and the server that exposes capabilities.
+
+3
+00:00:15.130 --> 00:00:21.284
+One client talks to exactly one server, but a host can run many clients at once.
+
+4
+00:00:21.484 --> 00:00:25.715
+Servers can offer three kinds of things: tools, resources, and prompts.
+
+5
+00:00:25.915 --> 00:00:31.300
+Tools are functions the model can decide to call, like searching a ticket system.
+
+6
+00:00:31.500 --> 00:00:38.423
+Resources are read-only data the application can attach as context, such as a file or a database row.
+
+7
+00:00:38.623 --> 00:00:44.008
+Prompts are reusable templates that a user picks explicitly, often shown as slash commands.
+
+8
+00:00:44.208 --> 00:00:45.746
+Messages use JSON-RPC 2.0.
+
+9
+00:00:45.946 --> 00:00:52.484
+For transport, local servers usually use standard input and output, so the host just launches a subprocess.
+
+10
+00:00:52.684 --> 00:00:57.299
+Remote servers use streamable HTTP, which replaced the older server-sent events transport.
+
+11
+00:00:57.499 --> 00:01:03.653
+Every session starts with an initialize request where both sides declare their protocol version and capabilities.
+
+12
+00:01:03.853 --> 00:01:08.468
+After that, the client calls tools/list to discover what the server offers.
+
+13
+00:01:08.668 --> 00:01:14.437
+Each tool comes with a name, a description, and a JSON schema for its input.
+
+14
+00:01:14.637 --> 00:01:21.175
+The description matters a lot because the model reads it to decide when to use the tool.
+
+15
+00:01:21.375 --> 00:01:27.913
+I keep tool descriptions under about two sentences and say exactly when not to use the tool.
+
+16
+00:01:28.113 --> 00:01:33.113
+When the model wants to act, the client sends tools/call with the arguments.
+
+17
+00:01:33.313 --> 00:01:39.082
+The server returns content blocks, usually text, and can flag the result as an error.
+
+18
+00:01:39.282 --> 00:01:45.436
+Returning an error result instead of throwing lets the model see the message and try again.
+
+19
+00:01:45.636 --> 00:01:49.098
+For remote servers, authorization is based on OAuth 2.1.
+
+20
+00:01:49.298 --> 00:01:56.221
+A big risk is a tool description that contains hidden instructions, which is a form of prompt injection.
+
+21
+00:01:56.421 --> 00:02:01.806
+Only install servers you trust, and review what each tool is allowed to touch.
+
+22
+00:02:02.006 --> 00:02:08.160
+For testing, the MCP Inspector lets you call tools by hand and see the raw messages.
+
+23
+00:02:08.360 --> 00:02:12.975
+You run it with npx and point it at your server command.
+
+24
+00:02:13.175 --> 00:02:22.790
+In my own setup I run four servers: git, a filesystem server limited to one folder, a browser, and a Postgres server in read-only mode.
+
+25
+00:02:22.990 --> 00:02:29.528
+Start with one server that solves a real problem, then add more once you trust the workflow.

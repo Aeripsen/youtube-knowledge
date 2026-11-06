@@ -1,0 +1,103 @@
+WEBVTT
+Kind: captions
+Language: en
+
+1
+00:00:00.500 --> 00:00:06.654
+In this video we cover how a Bluetooth Low Energy device exposes its data through GATT.
+
+2
+00:00:06.854 --> 00:00:13.392
+GATT stands for Generic Attribute Profile, and it sits on top of the Attribute Protocol, called ATT.
+
+3
+00:00:13.592 --> 00:00:19.746
+Before any GATT traffic happens, the devices find each other using GAP, the Generic Access Profile.
+
+4
+00:00:19.946 --> 00:00:23.792
+A peripheral advertises on three channels: thirty-seven, thirty-eight, and thirty-nine.
+
+5
+00:00:23.992 --> 00:00:30.530
+The central scans those channels and sends a connection request when it finds the device it wants.
+
+6
+00:00:30.730 --> 00:00:37.653
+Once connected, the peripheral usually acts as the GATT server and the phone acts as the GATT client.
+
+7
+00:00:37.853 --> 00:00:42.853
+Data is organized into services, and each service contains one or more characteristics.
+
+8
+00:00:43.053 --> 00:00:48.053
+For example, the standard heart rate service has the sixteen bit UUID 0x180D.
+
+9
+00:00:48.253 --> 00:00:54.407
+Inside it, the heart rate measurement characteristic is what actually carries the beats per minute value.
+
+10
+00:00:54.607 --> 00:00:58.838
+Every characteristic has properties such as read, write, notify, and indicate.
+
+11
+00:00:59.038 --> 00:01:05.576
+Notify lets the server push a new value without the client asking, and there is no acknowledgement.
+
+12
+00:01:05.776 --> 00:01:13.084
+Indicate does the same thing but the client must confirm each value, so it is slower and more reliable.
+
+13
+00:01:13.284 --> 00:01:20.976
+To turn notifications on, the client writes the value one to the Client Characteristic Configuration Descriptor, often shortened to CCCD.
+
+14
+00:01:21.176 --> 00:01:23.099
+Writing two instead enables indications.
+
+15
+00:01:23.299 --> 00:01:29.453
+A common bug is forgetting that CCCD write, and then wondering why no data ever arrives.
+
+16
+00:01:29.653 --> 00:01:35.422
+The default ATT MTU is twenty-three bytes, which leaves twenty bytes of payload per notification.
+
+17
+00:01:35.622 --> 00:01:41.776
+Most modern phones negotiate a larger MTU right after connecting, often two hundred and forty-seven bytes.
+
+18
+00:01:41.976 --> 00:01:47.745
+If you need more throughput, also request the two megabit PHY, which Bluetooth 5 introduced.
+
+19
+00:01:47.945 --> 00:01:53.330
+Connection interval matters too: a shorter interval means lower latency but higher power draw.
+
+20
+00:01:53.530 --> 00:01:59.684
+iOS will not let you go below fifteen milliseconds for the connection interval in most cases.
+
+21
+00:01:59.884 --> 00:02:05.653
+For debugging, I use nRF Connect on the phone to browse services and toggle notifications.
+
+22
+00:02:05.853 --> 00:02:13.161
+To see what is happening over the air, a sniffer running on an nRF52840 dongle feeds packets into Wireshark.
+
+23
+00:02:13.361 --> 00:02:21.053
+The sniffer has to follow the connection from the very first connection request, otherwise it cannot track the channel hopping.
+
+24
+00:02:21.253 --> 00:02:24.715
+So start the capture before you connect, not after.
+
+25
+00:02:24.915 --> 00:02:31.069
+That is the core of GATT: services, characteristics, descriptors, and the CCCD switch that starts notifications.
