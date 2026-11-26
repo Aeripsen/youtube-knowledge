@@ -1,7 +1,8 @@
 # Data Schema
 
-All normalized data is JSONL (one JSON object per line). Schemas are enforced in
-code with pydantic so malformed records fail loudly instead of silently.
+All normalized data is JSONL (one JSON object per line). This file describes what the
+normalize step writes. Nothing in `src/` validates records against it yet (no pydantic or other
+schema check), so treat it as documentation, not an enforced contract.
 
 ## `data/normalized/videos.jsonl` — one record per video
 
