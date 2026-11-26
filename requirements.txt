@@ -1,0 +1,5 @@
+yt-dlp
+youtube-transcript-api
+pyyaml
+python-dotenv
+tqdm

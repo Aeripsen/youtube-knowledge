@@ -1,45 +1,57 @@
 # youtube-knowledge
 
-A small, config-driven Python pipeline that turns a list of YouTube videos, channels, and search
-topics into **cited, structured insights** (tools, people, books/papers, links, action items).
-Built to digest a large backlog of technical talks without hand-watching every one.
+A small Python pipeline that pulls YouTube transcripts (videos, channels, playlists, search topics) into clean
+JSONL, plus a written contract for extracting **cited** insights from them (tools, people, papers, links, action
+items, each with a video id and a timestamp). It also ships an offline evaluation harness that prints its own
+measured weaknesses next to its results.
 
-## Why it exists
-Watching dozens of long technical videos to extract "what tool did they recommend, what's the
-actual takeaway" does not scale. This pipeline ingests sources, pulls the best available transcript,
-normalizes it, and asks an LLM to extract insights **with citations** (every claim carries its
-`video_id` + timestamp), so the output is checkable rather than vibes.
+## What is in the code and what is not
+
+| Stage | What it does | In this repo |
+|---|---|---|
+| Ingest | `yt-dlp` for metadata and human or auto captions, `youtube-transcript-api` as the fallback. Resumable: videos already fetched are skipped. | code, `src/ingest.py` |
+| Normalize | Raw captions to one JSONL record per video and one per transcript. | code, `src/normalize.py` |
+| Extract | Turns one transcript into cited insights under the rules in `docs/extract_spec.md` ("cite or cut", no invented facts, links only if spoken or in the description). | **A written spec only.** I run it with Claude Code subagents. There is no extract code in `src/` and no provider switch to call; the `extract:` block in `config/config.yaml` is not read by any code yet. |
+| Evaluate | A reference retrieval and answering path, scored on 50 labelled questions. | code, `evals/` |
+
+## Quickstart
+
+```bash
+git clone https://github.com/Aeripsen/youtube-knowledge && cd youtube-knowledge
+python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python src/run.py --limit 1                           # fetch and normalize one video (needs the network, about 20 s)
+python src/inspect_output.py                          # title, channel, caption source, segment count
+```
+
+Offline, no keys, no network:
+
+```bash
+python -m unittest discover -s tests -t .             # 37 tests
+python -m evals.run --check                           # re-runs the evaluation, fails if it differs from the committed results
+```
+
+All four commands were run from a fresh clone on 2026-11-26 (Python 3.14, Windows): the ingest of one video returned
+`{'auto_subs': 1}`, the 37 tests passed, and the evaluation matched the committed results. Outputs land in
+`data/raw/` and `data/normalized/`, which are gitignored. Put your own sources in `data/input/` and options in
+`config/config.yaml`. A `YOUTUBE_API_KEY` is only needed for the optional comments path, which is off by default.
 
 ## How it works
-```
-INGEST  ->  NORMALIZE  ->  EXTRACT
-```
-1. **Ingest** (`src/ingest.py`) — `yt-dlp` for metadata + human/auto captions, with
-   `youtube-transcript-api` as a fallback. Idempotent and resumable (skips already-fetched).
-2. **Normalize** (`src/normalize.py`) — raw captions to clean JSONL transcripts.
-3. **Extract** (`src/run.py`) — an LLM produces structured, **cited** insights per the schema in
-   `docs/data_schema.md`. The provider is pluggable (`config.yaml` -> `extract.provider`) so the
-   same pipeline can run against different models and cross-check them.
 
-Design choices: configuration over code edits (`config/config.yaml`), citations required
-(`docs/extract_spec.md`), and explicit anti-low-quality-output rules (`docs/anti_slop_rules.md`).
+```
+data/input/*  ->  INGEST  ->  data/raw/  ->  NORMALIZE  ->  data/normalized/  ->  EXTRACT (spec)  ->  data/insights/
+```
+
+Configuration over code edits (`config/config.yaml`), citations required (`docs/extract_spec.md`), and explicit
+rules against low-quality output (`docs/anti_slop_rules.md`). The record schema is in `docs/data_schema.md`.
 
 ## Layout
-- `config/config.yaml` — transcript priority, languages, provider, fields to extract
-- `data/input/` — what to fetch: `videos.txt`, `channels.txt`, `playlists.txt`,
-  `search-queries.txt` (topics resolved to real videos), `resources.md` (non-video docs/repos)
-- `data/raw/` -> `data/normalized/` -> `data/insights/` — pipeline stages (gitignored outputs)
-- `src/` — pipeline code
-- `docs/` — `data_schema.md`, `extract_spec.md`, `anti_slop_rules.md`
 
-## Run
-```bash
-pip install yt-dlp youtube-transcript-api pyyaml
-# put sources in data/input/, set options in config/config.yaml
-python src/run.py
-```
-A `YOUTUBE_API_KEY` (repo-root `.env`) is only needed for the optional comments/API-metadata path.
-No secrets are committed.
+- `config/config.yaml`: transcript priority, languages, delays, fields to extract
+- `data/input/`: `videos.txt`, `channels.txt`, `playlists.txt`, `search-queries.txt`, `resources.md`
+- `src/`: ingest, normalize, run, inspect_output
+- `evals/` and `tests/`: the harness and its tests
+- `docs/`: schema, extract spec, anti-slop rules, evaluation method
 
 ## Evaluation
 `make eval` (or `python -m evals.run`) scores retrieval, citations, faithfulness and refusal on
@@ -98,8 +110,11 @@ Limits:
 Run the tests with `make test` (standard library only).
 
 ## Status
-Working end to end on a real backlog of AI-agent and IoT/Wireshark talks. The committed input lists
-are the example sources; pipeline outputs are gitignored.
+
+The ingest and normalize stages run end to end (checked on one video, 2026-11-26). The committed input lists are
+example sources, mostly AI-agent and IoT talks. How good the subagent extraction output is has not been measured:
+the harness above scores retrieval and answering, not the insight files.
 
 ## License
-MIT — see `LICENSE`.
+
+MIT, see `LICENSE`.
